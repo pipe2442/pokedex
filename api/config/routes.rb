@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   post "/logout", to: "auth#logout"
   get "/me", to: "auth#me"
   get "/dashboard", to: "dashboard#index"
+
+  get "/pokemons", to: "pokemons#index"
 end

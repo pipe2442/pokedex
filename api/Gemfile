@@ -19,6 +19,9 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bcrypt", "~> 3.1"
 gem "jwt"
 
+# http request gems
+gem "httparty"
+
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
 gem "solid_queue"
@@ -51,4 +54,7 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  #byebug
+  gem "byebug"
 end
