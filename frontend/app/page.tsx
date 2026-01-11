@@ -7,7 +7,6 @@ export default async function Page() {
   const cookieStore = await cookies()
 
   if (!cookieStore.has("jwt")) redirect("/login")
-
   const initialData = await getPokemons(1)
 
   return <PokemonList initialData={initialData} />
