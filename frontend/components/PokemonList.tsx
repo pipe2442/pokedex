@@ -15,7 +15,7 @@ export default function PokemonList({ initialData }: any) {
   });
 
   return (
-    <main className="p-4 flex flex-col gap-4">
+    <main className="flex flex-col">
       <div className="flex flex-wrap gap-4 justify-center">
         {data.results.map((p: any) => (
           <PokemonCard key={p.id} pokemon={p} />
