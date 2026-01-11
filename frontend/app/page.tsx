@@ -68,10 +68,8 @@
 //     </main>
 //   );
 // }
-import { getPokemons } from "@/lib/server";
-import PokemonList from "@/components/PokemonList";
+import HomeGate from "@/components/HomeGate"
 
-export default async function Page() {
-  const data = await getPokemons(2);
-  return <PokemonList initialData={data} />;
+export default function Page() {
+  return <HomeGate />
 }
