@@ -42,7 +42,7 @@ export default function PokemonCard({ pokemon }: any) {
   return (
     <Link href={`/pokemons/${pokemon.id}`}>
       {/* Aumentamos w-40 -> w-56 y h-45 -> h-72 */}
-      <Card className="w-55 h-60 overflow-hidden hover:scale-105 transition border-none p-0 relative group shadow-2xl rounded-2xl">
+      <Card className="w-55 h-65 overflow-hidden hover:scale-105 transition border-none p-0 relative group shadow-2xl rounded-2xl">
         {/* FONDO DIVIDIDO */}
         <div className="absolute inset-0 flex flex-col">
           <div className=" h-[60%]" />
