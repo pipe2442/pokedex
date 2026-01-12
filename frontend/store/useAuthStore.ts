@@ -1,16 +1,16 @@
-import { create } from "zustand"
-import { persist } from "zustand/middleware"
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type User = {
-  username: string
-  role: string
-}
+  username: string;
+  role: string;
+};
 
 type AuthState = {
-  user: User | null
-  setUser: (user: User) => void
-  logout: () => void
-}
+  user: User | null;
+  setUser: (user: User) => void;
+  logout: () => void;
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -20,7 +20,7 @@ export const useAuthStore = create<AuthState>()(
       logout: () => set({ user: null }),
     }),
     {
-      name: "auth-storage", // 👈 localStorage key
+      name: "auth-storage",
     }
   )
-)
+);

@@ -4,7 +4,7 @@ import { usePokemonStore } from "@/store/usePokemonStore";
 import SearchFilters from "./SearchFilters";
 
 export default function SearchBar() {
-  const setSearch = usePokemonStore((s) => s.setSearch);
+  const { search, setSearch } = usePokemonStore();
 
   return (
     <div className="flex items-center gap-3 w-full max-w-3xl">
@@ -15,8 +15,9 @@ export default function SearchBar() {
         />
         <Input
           placeholder="Search"
+          value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="rounded-full bg-white pl-12 shadow-inner border-none h-11 w-full"
+          className="rounded-full bg-white pl-12 shadow-inner border-none h-11 w-full focus-visible:ring-2 focus-visible:ring-white/50"
         />
       </div>
       <SearchFilters />
