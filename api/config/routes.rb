@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   post "/login", to: "auth#login"
   post "/logout", to: "auth#logout"
   get "/me", to: "auth#me"
-  get "/dashboard", to: "dashboard#index"
 
   get "/pokemons", to: "pokemons#index"
   get "/pokemon/:id", to: "pokemons#show"

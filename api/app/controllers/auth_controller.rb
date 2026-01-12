@@ -2,23 +2,6 @@ class AuthController < ApplicationController
   include ActionController::Cookies
   before_action :authenticate_user!, only: [ :me ]
 
-  # def login
-  #   user = User.find_by("username = ? OR email = ?", params[:login], params[:login])
-  #   return render json: { error: "Invalid credentials" }, status: 401 unless user&.authenticate(params[:password])
-
-  #   token = JwtService.encode(user_id: user.id)
-
-  #   cookies.signed[:jwt] = {
-  #     value: token,
-  #     httponly: true,
-  #     secure: false,
-  #     same_site: :lax
-  #   }
-
-  #   render json: { user: user }
-  # end
-
-  # this one encrypts the token
   def login
     user = User.find_by("username = ? OR email = ?", params[:login], params[:login])
     return render json: { error: "Invalid credentials" }, status: :unauthorized unless user&.authenticate(params[:password])
@@ -28,7 +11,7 @@ class AuthController < ApplicationController
     cookies.encrypted[:jwt] = {
       value: token,
       httponly: true,
-      secure: false, # Deshabilitado para pruebas locales en Docker con HTTP
+      secure: false,
       same_site: :lax
     }
 

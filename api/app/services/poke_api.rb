@@ -1,68 +1,60 @@
+# api/app/services/poke_api.rb
 class PokeApi
   include HTTParty
   BASE = "https://pokeapi.co/api/v2"
   PER_PAGE = 151
 
-  def self.list(page: 1)
-    page = normalize_page(page)
-    offset = (page - 1) * PER_PAGE
+  class << self
+    def list(page: 1)
+      page = normalize_page(page)
+      offset = (page - 1) * PER_PAGE
 
-    res = get("#{BASE}/pokemon?offset=#{offset}&limit=#{PER_PAGE}")
-    map_list(res.parsed_response, page)
-  end
+      response = get("#{BASE}/pokemon?offset=#{offset}&limit=#{PER_PAGE}")
+      map_list(response.parsed_response, page)
+    end
 
-  private
+    def fetch(id)
+      pokemon = get("#{BASE}/pokemon/#{id}").parsed_response
+      species = get("#{BASE}/pokemon-species/#{id}").parsed_response
 
-  def self.normalize_page(value)
-    page = value.to_i
-    page = 1 if page <= 0
-    page = 100 if page > 100
-    page
-  end
+      pokemon.merge(
+        "number" => format_number(pokemon["id"]),
+        "description" => description_from(species)
+      )
+    end
 
-  def self.map_list(data, page)
-    {
-      page: page,
-      total: data["count"],
-      results: data["results"].map do |p|
-        id = extract_id(p["url"])
-        {
-          id: id,
-          number: format_number(id),
-          name: p["name"],
-          image: sprite(id)
-        }
-      end
-    }
-  end
+    private
 
-  def self.format_number(id)
-    id.to_s.rjust(3, "0")
-  end
+    def normalize_page(value)
+      page = value.to_i
+      page.clamp(1, 100)
+    end
 
+    def format_number(id)
+      id.to_s.rjust(3, "0")
+    end
 
-  def self.extract_id(url)
-    url.split("/").last.to_i
-  end
+    def map_list(data, page)
+      {
+        page: page,
+        total: data["count"],
+        results: data["results"].map { |p| format_pokemon_item(p) }
+      }
+    end
 
-  def self.sprite(id)
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{id}.png"
-  end
+    def format_pokemon_item(p)
+      id = p["url"].split("/").last.to_i
+      {
+        id: id,
+        number: format_number(id),
+        name: p["name"],
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{id}.png"
+      }
+    end
 
-  def self.fetch(id)
-    pokemon = get("#{BASE}/pokemon/#{id}").parsed_response
-    species = get("#{BASE}/pokemon-species/#{id}").parsed_response
-
-    pokemon.merge(
-      "number" => pokemon.fetch("id").to_i.to_s.rjust(3, "0"),
-      "description" => description_from(species)
-    )
-  end
-
-  def self.description_from(species)
-    entries = species.fetch("flavor_text_entries", [])
-    pick = entries.find { |e| e.dig("language", "name") == "en" }
-
-    pick.to_h.fetch("flavor_text", "").to_s.squish
+    def description_from(species)
+      entry = species.dig("flavor_text_entries")&.find { |e| e.dig("language", "name") == "en" }
+      entry&.fetch("flavor_text", "")&.squish || ""
+    end
   end
 end
