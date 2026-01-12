@@ -44,6 +44,7 @@ export interface PokemonListResponse {
   current_page?: number;
 }
 
+// Props Interfaces for Components
 export interface PokemonGridProps {
   pokemons: Pokemon[];
   search: string;
@@ -53,4 +54,34 @@ export interface PokemonGridProps {
 export interface PaginationProps {
   page: number;
   onPageChange: (newPage: number) => void;
+}
+
+export interface DetailHeaderProps {
+  name: string;
+  number: string;
+}
+
+export interface AboutSectionProps {
+  pokemon: Pokemon;
+}
+
+export interface DetailNavigationProps {
+  pokemonId: number;
+  name: string;
+  image: string;
+}
+
+export interface TypeBadgesProps {
+  types: (string | PokemonType)[];
+}
+
+export interface StatBarProps {
+  label: string;
+  value: number;
+  color: string;
+}
+
+export interface User {
+  login: string;
+  role?: string;
 }

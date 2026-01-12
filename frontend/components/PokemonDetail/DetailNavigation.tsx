@@ -4,11 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import PokeballBackground from "./PokeballBackground";
 
-interface DetailNavigationProps {
-  pokemonId: number;
-  name: string;
-  image: string;
-}
+import { DetailNavigationProps } from "@/types/pokemon";
 
 export function DetailNavigation({
   pokemonId,

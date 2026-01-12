@@ -1,9 +1,7 @@
 import { Weight, Ruler } from "lucide-react";
 import { Pokemon } from "@/types/pokemon";
 
-interface AboutSectionProps {
-  pokemon: Pokemon;
-}
+import { AboutSectionProps } from "@/types/pokemon";
 
 export function AboutSection({ pokemon }: AboutSectionProps) {
   return (

@@ -5,7 +5,7 @@ import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useLogout } from "@/hooks/useLogout";
-import SearchBar from "./SearchBar";
+import SearchBar from "@/components/SearchBar";
 
 export default function Navbar() {
   const { handleLogout } = useLogout();

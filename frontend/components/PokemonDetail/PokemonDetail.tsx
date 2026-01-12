@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import { StatBar } from "@/components/StatBar";
+import StatBar from "@/components/StatBar";
 import { POKEMON_TYPE_COLORS, STAT_LABELS } from "@/lib/constants/pokemon";
 import { Pokemon } from "@/types/pokemon";
 

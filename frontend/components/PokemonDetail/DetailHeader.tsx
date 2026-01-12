@@ -2,10 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-interface DetailHeaderProps {
-  name: string;
-  number: string;
-}
+import { DetailHeaderProps } from "@/types/pokemon";
 
 export function DetailHeader({ name, number }: DetailHeaderProps) {
   return (

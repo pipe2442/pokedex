@@ -1,9 +1,6 @@
 import { POKEMON_TYPE_COLORS } from "@/lib/constants/pokemon";
-import { PokemonType } from "@/types/pokemon";
 
-interface TypeBadgesProps {
-  types: (string | PokemonType)[];
-}
+import { TypeBadgesProps } from "@/types/pokemon";
 
 export function TypeBadges({ types }: TypeBadgesProps) {
   return (

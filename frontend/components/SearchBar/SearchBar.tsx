@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { usePokemonStore } from "@/store/usePokemonStore";
-import SearchFilters from "./SearchFilters";
+import SearchFilters from "@/components/SearchFilters";
 
 export default function SearchBar() {
   const { search, setSearch } = usePokemonStore();

@@ -2,15 +2,9 @@
 
 import * as React from "react";
 
-export function StatBar({
-  label,
-  value,
-  color,
-}: {
-  label: string;
-  value: number;
-  color: string;
-}) {
+import { StatBarProps } from "@/types/pokemon";
+
+export default function StatBar({ label, value, color }: StatBarProps) {
   const numValue = Number(value) || 0;
   const percentage = Math.min((numValue / 255) * 100, 100);
 

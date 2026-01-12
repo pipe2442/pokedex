@@ -1,6 +1,6 @@
 import { PokemonGridProps } from "@/types/pokemon";
-import PokemonCard from "../PokemonCard";
-import PokemonCardSkeleton from "../PokemonCardSkeleton";
+import PokemonCard from "@/components/PokemonCard";
+import PokemonCardSkeleton from "@/components/PokemonCardSkeleton";
 
 export default function PokemonGrid({
   pokemons,
