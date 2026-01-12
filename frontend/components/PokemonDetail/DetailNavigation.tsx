@@ -36,7 +36,7 @@ export function DetailNavigation({
           width={256}
           height={256}
           priority
-          className="object-contain drop-shadow-2xl"
+          className="object-contain drop-shadow-2xl animate-poke-jump"
         />
       </div>
 

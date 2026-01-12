@@ -44,6 +44,42 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  --animate-poke-jump: poke-jump 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+  @keyframes poke-jump {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(-20px) scale(1.1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  --color-pokemon-grass: #74cb48;
+  --color-pokemon-poison: #a43e9e;
+  --color-pokemon-fire: #f57d31;
+  --color-pokemon-water: #6493eb;
+  --color-pokemon-bug: #a7b723;
+  --color-pokemon-normal: #aaa67f;
+  --color-pokemon-electric: #f9cf30;
+  --color-pokemon-ground: #e2bf65;
+  --color-pokemon-fairy: #d685ad;
+  --color-pokemon-fighting: #c12239;
+  --color-pokemon-psychic: #fb5584;
+  --color-pokemon-rock: #b69e31;
+  --color-pokemon-ghost: #705594;
+  --color-pokemon-ice: #9ad6df;
+  --color-pokemon-dragon: #7037ff;
+  --color-pokemon-dark: #705746;
+  --color-pokemon-steel: #b7b9d0;
+  --color-pokemon-flying: #a891ec;
 }
 
 :root {
