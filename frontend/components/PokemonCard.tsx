@@ -4,7 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 
-export default function PokemonCard({ pokemon }: any) {
+// this should go to another file like types.ts
+interface PokemonCardProps {
+  pokemon: {
+    id: number;
+    number: string;
+    name: string;
+    image: string;
+  };
+}
+
+export default function PokemonCard({ pokemon }: PokemonCardProps) {
+  const formattedNumber = `#${pokemon.number.toString().padStart(3, "0")}`;
+
   return (
     <Link href={`/pokemon/${pokemon.id}`} className="w-full block">
       <Card className="w-full aspect-square overflow-hidden hover:scale-105 transition-all duration-300 border-none p-0 relative group shadow-[0_10px_40px_rgba(0,0,0,0.12)] rounded-2xl bg-[#EFEFEF]">
@@ -12,7 +24,7 @@ export default function PokemonCard({ pokemon }: any) {
 
         <div className="relative z-10 h-full flex flex-col p-2 sm:p-3">
           <p className="text-right text-[10px] sm:text-[14px] text-[#666666] font-medium pr-1">
-            #{pokemon.number}
+            {formattedNumber}
           </p>
 
           <div className="flex-1 flex items-center justify-center min-h-0 relative">
