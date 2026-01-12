@@ -10,6 +10,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { StatBar } from "./StatBar";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const typeColors: any = {
   grass: "#74CB48",
@@ -42,7 +44,6 @@ const statLabels: any = {
 };
 
 export default function PokemonDetail({ pokemon }: { pokemon: any }) {
-  // Extraemos el tipo principal (manejando si es string o objeto)
   const firstType = (
     typeof pokemon.types[0] === "string"
       ? pokemon.types[0]
@@ -57,16 +58,19 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
       className="min-h-screen flex flex-col relative overflow-hidden"
       style={{ backgroundColor: bgColor }}
     >
-
       {/* Header */}
       <header className="flex items-center justify-between px-6 pt-12 pb-4 text-white z-10">
         <div className="flex items-center gap-4">
-          <Link
-            href="/"
-            className="hover:bg-white/20 p-2 rounded-full transition-colors"
+          <Button
+            variant="ghost"
+            size="icon"
+            asChild
+            className="text-white hover:bg-white/20 hover:text-white rounded-full transition-colors"
           >
-            <ArrowLeft size={30} />
-          </Link>
+            <Link href="/">
+              <ArrowLeft size={30} />
+            </Link>
+          </Button>
           <h1 className="text-3xl font-bold capitalize">{pokemon.name}</h1>
         </div>
         <span className="font-bold text-lg">#{pokemon.number}</span>
@@ -74,12 +78,18 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
 
       {/* Navegación y Foto */}
       <div className="relative flex justify-between items-center px-4 z-10 h-40">
-        <Link
-          href={`/pokemons/${pokemonId - 1}`}
-          className={pokemonId <= 1 ? "invisible" : ""}
+        <Button
+          variant="ghost"
+          size="icon"
+          asChild
+          className={`text-white/70 hover:text-white hover:bg-transparent ${
+            pokemonId <= 1 ? "invisible" : ""
+          }`}
         >
-          <ChevronLeft className="text-white/70 hover:text-white" size={40} />
-        </Link>
+          <Link href={`/pokemon/${pokemonId - 1}`}>
+            <ChevronLeft size={40} />
+          </Link>
+        </Button>
 
         <div className="absolute left-1/2 -translate-x-1/2 top-4 w-64 h-64 z-20">
           <Image
@@ -97,30 +107,36 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
           />
         </div>
 
-        <Link href={`/pokemons/${pokemonId + 1}`}>
-          <ChevronRight className="text-white/70 hover:text-white" size={40} />
-        </Link>
+        <Button
+          variant="ghost"
+          size="icon"
+          asChild
+          className="text-white/70 hover:text-white hover:bg-transparent"
+        >
+          <Link href={`/pokemon/${pokemonId + 1}`}>
+            <ChevronRight size={40} />
+          </Link>
+        </Button>
       </div>
 
-      {/* Card de Información Blanca */}
-      <div className="flex-1 bg-white mx-1 mb-1 rounded-2xl mt-24 p-6 pt-16 shadow-xl relative z-0">
+      {/* Card de Información (Shadcn Card) */}
+      <Card className="flex-1 bg-white mx-1 mb-1 rounded-t-[2.5rem] rounded-b-none mt-24 p-6 pt-16 border-none shadow-none relative z-0 overflow-visible">
         {/* Chips de Tipos */}
         <div className="flex justify-center gap-3 mb-8">
           {pokemon.types.map((t: any) => {
             const name = typeof t === "string" ? t : t.type?.name;
             return (
-              <span
+              <div
                 key={name}
                 className="px-4 py-1 rounded-full text-white text-xs font-bold capitalize"
                 style={{ backgroundColor: typeColors[name.toLowerCase()] }}
               >
                 {name}
-              </span>
+              </div>
             );
           })}
         </div>
 
-        {/* Sección About */}
         <h2
           className="text-center font-bold text-xl mb-6"
           style={{ color: bgColor }}
@@ -136,7 +152,9 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
                 {pokemon.weight / 10} kg
               </span>
             </div>
-            <span className="text-[10px] text-gray-400 mt-2">Weight</span>
+            <span className="text-[10px] text-muted-foreground mt-2 font-bold uppercase tracking-wider">
+              Weight
+            </span>
           </div>
 
           <div className="flex flex-col items-center border-r border-gray-100">
@@ -146,7 +164,9 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
                 {pokemon.height / 10} m
               </span>
             </div>
-            <span className="text-[10px] text-gray-400 mt-2">Height</span>
+            <span className="text-[10px] text-muted-foreground mt-2 font-bold uppercase tracking-wider">
+              Height
+            </span>
           </div>
 
           <div className="flex flex-col items-center">
@@ -154,22 +174,22 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
               {pokemon.abilities?.slice(0, 2).map((a: any) => (
                 <span
                   key={a.ability?.name || a}
-                  className="text-[11px] capitalize"
+                  className="text-[11px] capitalize font-medium"
                 >
                   {a.ability?.name || a}
                 </span>
               ))}
             </div>
-            <span className="text-[10px] text-gray-400 mt-2">Abilities</span>
+            <span className="text-[10px] text-muted-foreground mt-2 font-bold uppercase tracking-wider">
+              Abilities
+            </span>
           </div>
         </div>
 
-        {/* Descripción */}
-        <p className="text-sm text-gray-600 text-center mb-10 px-4 leading-relaxed">
+        <p className="text-sm text-gray-600 text-center mb-10 px-4 leading-relaxed max-w-md mx-auto">
           {pokemon.description || "No description available for this Pokémon."}
         </p>
 
-        {/* Estadísticas */}
         <h2
           className="text-center font-bold text-xl mb-6"
           style={{ color: bgColor }}
@@ -177,7 +197,7 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
           Base Stats
         </h2>
 
-        <div className="space-y-3 max-w-md mx-auto">
+        <div className="space-y-4 w-full max-w-md mx-auto px-2">
           {pokemon.stats?.map((s: any) => (
             <StatBar
               key={s.stat.name}
@@ -189,7 +209,7 @@ export default function PokemonDetail({ pokemon }: { pokemon: any }) {
             />
           ))}
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

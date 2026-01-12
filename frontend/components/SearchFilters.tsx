@@ -1,5 +1,6 @@
 "use client";
 import { ListFilter, Baseline, Hash } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { usePokemonStore } from "@/store/usePokemonStore";
 import {
@@ -11,6 +12,14 @@ import {
 
 export default function SearchFilters() {
   const { sort, setSort } = usePokemonStore();
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   const getSortIcon = () => {
     if (sort === "name")

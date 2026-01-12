@@ -50,18 +50,19 @@ class PokeApi
   end
 
   def self.fetch(id)
-    res = get("#{BASE}/pokemon/#{id}")
-    body = res.parsed_response
+    pokemon = get("#{BASE}/pokemon/#{id}").parsed_response
+    species = get("#{BASE}/pokemon-species/#{id}").parsed_response
 
-    raw_number =
-      if body.is_a?(Hash) && body["id"]
-        body["id"]
-      else
-        id
-      end
+    pokemon.merge(
+      "number" => pokemon.fetch("id").to_i.to_s.rjust(3, "0"),
+      "description" => description_from(species)
+    )
+  end
 
-    number = raw_number.to_i.to_s.rjust(3, "0") # "2" => "002"
+  def self.description_from(species)
+    entries = species.fetch("flavor_text_entries", [])
+    pick = entries.find { |e| e.dig("language", "name") == "en" }
 
-    body.merge("number" => number)
+    pick.to_h.fetch("flavor_text", "").to_s.squish
   end
 end
