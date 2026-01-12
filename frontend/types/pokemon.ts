@@ -37,3 +37,19 @@ export interface Pokemon {
     front_default?: string;
   };
 }
+
+export interface PokemonListResponse {
+  results: Pokemon[];
+  total_pages?: number;
+  current_page?: number;
+}
+
+export interface PokemonGridProps {
+  pokemons: Pokemon[];
+  search: string;
+}
+
+export interface PaginationProps {
+  page: number;
+  onPageChange: (newPage: number) => void;
+}

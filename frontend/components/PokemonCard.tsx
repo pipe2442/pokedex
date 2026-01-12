@@ -3,19 +3,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
+import { Pokemon } from "@/types/pokemon";
 
-// this should go to another file like types.ts
 interface PokemonCardProps {
-  pokemon: {
-    id: number;
-    number: string;
-    name: string;
-    image: string;
-  };
+  pokemon: Pokemon;
 }
 
 export default function PokemonCard({ pokemon }: PokemonCardProps) {
   const formattedNumber = `#${pokemon.number.toString().padStart(3, "0")}`;
+
+  const imageUrl = pokemon.image || "/pokeball.svg.png";
 
   return (
     <Link href={`/pokemon/${pokemon.id}`} className="w-full block">
@@ -29,7 +26,7 @@ export default function PokemonCard({ pokemon }: PokemonCardProps) {
 
           <div className="flex-1 flex items-center justify-center min-h-0 relative">
             <Image
-              src={pokemon.image}
+              src={imageUrl}
               alt={pokemon.name}
               width={120}
               height={120}
