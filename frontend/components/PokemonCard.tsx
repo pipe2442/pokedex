@@ -8,17 +8,13 @@ export default function PokemonCard({ pokemon }: any) {
   return (
     <Link href={`/pokemon/${pokemon.id}`} className="w-full block">
       <Card className="w-full aspect-square overflow-hidden hover:scale-105 transition-all duration-300 border-none p-0 relative group shadow-[0_10px_40px_rgba(0,0,0,0.12)] rounded-2xl bg-[#EFEFEF]">
-        {/* Fondo Blanco (Superior) */}
         <div className="absolute top-0 left-0 w-full h-[65%] bg-white" />
 
-        {/* Contenido */}
         <div className="relative z-10 h-full flex flex-col p-2 sm:p-3">
-          {/* Número */}
           <p className="text-right text-[10px] sm:text-[14px] text-[#666666] font-medium pr-1">
             #{pokemon.number}
           </p>
 
-          {/* Imagen: Quitamos el translate-y agresivo para que no tape el nombre */}
           <div className="flex-1 flex items-center justify-center min-h-0 relative">
             <Image
               src={pokemon.image}
@@ -30,7 +26,6 @@ export default function PokemonCard({ pokemon }: any) {
             />
           </div>
 
-          {/* Nombre: Aseguramos un alto fijo y centrado */}
           <div className="h-[20%] flex items-center justify-center">
             <h2 className="text-[11px] sm:text-[18px] font-light capitalize text-[#1D1D1D] text-center leading-none">
               {pokemon.name}

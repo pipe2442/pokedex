@@ -5,12 +5,12 @@ export function middleware(request: NextRequest) {
   const jwt = request.cookies.get("jwt");
   const { pathname } = request.nextUrl;
 
-  // 1. Si el usuario NO tiene el JWT y NO está en /login, mándalo a /login
+  // if the user does not have a JWT and is not accessing /login, redirect to /login
   if (!jwt && pathname !== "/login") {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // 2. Si el usuario TIENE el JWT e intenta entrar a /login, mándalo al home
+  // if the user has a JWT and tries to access /login, redirect to the home page
   if (jwt && pathname === "/login") {
     return NextResponse.redirect(new URL("/", request.url));
   }
@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-// Configura en qué rutas debe ejecutarse el middleware
+// Configure which routes the middleware should run on
 export const config = {
   matcher: [
     /*

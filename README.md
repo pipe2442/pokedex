@@ -38,7 +38,7 @@ If you prefer to run the applications manually without Docker, follow these step
 cd api
 bundle install
 rails db:prepare
-rails s -p 8000
+rails s
 ```
 *The API will be available at [http://localhost:8000](http://localhost:8000)*
 

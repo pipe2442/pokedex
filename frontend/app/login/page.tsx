@@ -1,73 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthStore } from "@/store/useAuthStore";
-import { loginSchema, type LoginFormValues } from "@/lib/validations/auth";
-import { getApiUrl } from "@/lib/api";
-
-// Componentes de Shadcn
+import { useLogin } from "@/hooks/useLogin";
 import { Button } from "@/components/ui/button";
 import {
   Form,
-  FormControl,
   FormField,
   FormItem,
   FormLabel,
+  FormControl,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function LoginPage() {
-  const { user, setUser } = useAuthStore();
-  const router = useRouter();
-  const [error, setError] = useState("");
+  const { user } = useAuthStore();
+  const { form, error, isLoading, onSubmit } = useLogin();
 
-  // 1. Auth Guard: Si ya está logueado, mandarlo al home
-  useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
-  }, [user, router]);
-
-  // 2. Configurar el formulario con React Hook Form + Zod
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      login: "admin",
-      password: "admin",
-    },
-  });
-
-  // 3. Función de envío
-  async function onSubmit(values: LoginFormValues) {
-    setError("");
-    const apiUrl = getApiUrl();
-    try {
-      const res = await fetch(`${apiUrl}/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-
-      if (!res.ok) {
-        setError("Invalid credentials");
-        return;
-      }
-
-      const data = await res.json();
-      setUser(data.user);
-      router.push("/");
-    } catch (e) {
-      setError("Something went wrong. Please try again.");
-    }
-  }
-
-  // Si ya hay usuario, no renderizamos nada mientras redirige
   if (user) return null;
 
   return (
@@ -80,7 +30,7 @@ export default function LoginPage() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={onSubmit} className="space-y-4">
               <FormField
                 control={form.control}
                 name="login"
@@ -88,13 +38,12 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Username</FormLabel>
                     <FormControl>
-                      <Input placeholder="admin" {...field} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="password"
@@ -112,19 +61,15 @@ export default function LoginPage() {
                   </FormItem>
                 )}
               />
-
               {error && (
-                <div className="text-red-500 text-sm font-medium text-center">
-                  {error}
-                </div>
+                <div className="text-red-500 text-sm text-center">{error}</div>
               )}
-
               <Button
                 type="submit"
-                className="cursor-pointer w-full bg-[#DC0A2D] hover:bg-[#b50825] text-white py-6 text-lg rounded-xl transition-all active:scale-[0.98]"
-                disabled={form.formState.isSubmitting}
+                className="cursor-pointer w-full"
+                disabled={isLoading}
               >
-                {form.formState.isSubmitting ? "Logging in..." : "Login"}
+                {isLoading ? "Logging in..." : "Login"}
               </Button>
             </form>
           </Form>
