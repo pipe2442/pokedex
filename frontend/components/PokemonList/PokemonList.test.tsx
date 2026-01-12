@@ -10,8 +10,8 @@ vi.mock("@/hooks/usePokemonList", () => ({
 
 const mockInitialData: PokemonListResponse = {
   results: [],
-  total_pages: 1,
-  current_page: 1,
+  total: 0,
+  page: 1,
 };
 
 describe("PokemonList", () => {
@@ -22,6 +22,7 @@ describe("PokemonList", () => {
       setPage: vi.fn(),
       search: "",
       isLoading: true,
+      totalPages: 1,
     });
 
     const { container } = render(<PokemonList initialData={mockInitialData} />);
@@ -39,6 +40,7 @@ describe("PokemonList", () => {
       setPage: vi.fn(),
       search: "",
       isLoading: false,
+      totalPages: 1,
     });
 
     render(<PokemonList initialData={mockInitialData} />);

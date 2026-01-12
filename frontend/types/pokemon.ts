@@ -40,8 +40,8 @@ export interface Pokemon {
 
 export interface PokemonListResponse {
   results: Pokemon[];
-  total_pages?: number;
-  current_page?: number;
+  total: number;
+  page: number;
 }
 
 // Props Interfaces for Components
@@ -53,6 +53,7 @@ export interface PokemonGridProps {
 
 export interface PaginationProps {
   page: number;
+  totalPages: number;
   onPageChange: (newPage: number) => void;
 }
 

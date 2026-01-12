@@ -10,13 +10,19 @@ interface PokemonListProps {
 }
 
 export default function PokemonList({ initialData }: PokemonListProps) {
-  const { pokemons, page, setPage, search, isLoading } = usePokemonList({
+  const { pokemons, page, setPage, search, isLoading, totalPages } = usePokemonList({
     initialData,
   });
 
   return (
     <main className="w-full rounded-t-3xl min-h-screen px-6 py-8">
-      {!search && <Pagination page={page} onPageChange={setPage} />}
+      {!search && (
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+        />
+      )}
 
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         <PokemonGrid

@@ -13,7 +13,7 @@ export async function getPokemons(page = 1) {
   });
 
   if (res.status === 401) {
-    return { pokemons: [], total_pages: 0 };
+    return { results: [], total: 0, page: 1 };
   }
 
   if (!res.ok) throw new Error("Failed to fetch pokemons");

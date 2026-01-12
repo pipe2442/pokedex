@@ -41,8 +41,8 @@ describe("usePokemonList", () => {
 
     const mockInitialData: PokemonListResponse = { 
       results: [mockPokemon],
-      current_page: 1,
-      total_pages: 1
+      page: 1,
+      total: 1
     };
     const { result } = renderHook(() => usePokemonList({ initialData: mockInitialData }), { wrapper });
 

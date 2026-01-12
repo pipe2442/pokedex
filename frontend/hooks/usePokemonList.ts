@@ -21,11 +21,16 @@ export function usePokemonList({ initialData }: UsePokemonListProps) {
 
   const pokemons = getProcessedList(data?.results || []);
 
+  // Calculate total pages based on 151 items per page (from Rails PER_PAGE)
+  const totalItems = data?.total || 0;
+  const totalPages = Math.ceil(totalItems / 151) || 1;
+
   return {
     pokemons,
     page,
     setPage,
     search,
     isLoading: isFetching,
+    totalPages,
   };
 }

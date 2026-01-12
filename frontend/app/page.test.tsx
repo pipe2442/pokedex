@@ -38,8 +38,8 @@ describe("Home Page (Server Component)", () => {
 
     const mockData: PokemonListResponse = {
       results: [mockPokemon],
-      current_page: 1,
-      total_pages: 1
+      page: 1,
+      total: 1
     };
     (getPokemons as Mock).mockResolvedValue(mockData);
 
