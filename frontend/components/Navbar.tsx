@@ -7,6 +7,7 @@ import { usePokemonStore } from "@/store/usePokemonStore";
 import { useAuthStore } from "@/store/useAuthStore"; // Importamos el store
 import { useRouter } from "next/navigation"; // Para redirigir
 import SearchFilters from "./SearchFilters";
+import { getApiUrl } from "@/lib/api";
 import Link from "next/link";
 import { Button } from "@/components/ui/button"; // Usamos el botón de shadcn
 
@@ -16,9 +17,10 @@ export default function Navbar() {
   const router = useRouter();
 
   const handleLogout = async () => {
+    const apiUrl = getApiUrl();
     try {
       // Llamada al endpoint de Rails
-      await fetch("http://localhost:8000/logout", {
+      await fetch(`${apiUrl}/logout`, {
         method: "POST",
         credentials: "include",
       });

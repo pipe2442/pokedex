@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuthStore } from "@/store/useAuthStore";
 import { loginSchema, type LoginFormValues } from "@/lib/validations/auth";
+import { getApiUrl } from "@/lib/api";
 
 // Componentes de Shadcn
 import { Button } from "@/components/ui/button";
@@ -44,8 +45,9 @@ export default function LoginPage() {
   // 3. Función de envío
   async function onSubmit(values: LoginFormValues) {
     setError("");
+    const apiUrl = getApiUrl();
     try {
-      const res = await fetch("http://localhost:8000/login", {
+      const res = await fetch(`${apiUrl}/login`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: .
+      target: api
+    ports:
+      - "8000:80"
+    volumes:
+      - ./api/storage:/rails/storage
+    environment:
+      - RAILS_ENV=production
+      - RAILS_SERVE_STATIC_FILES=true
+      # This is a default value for the SECRET_KEY_BASE environment variable. It is used 
+      # to sign the JWT tokens. But it is not secure, so it is not recommended to use it in production.
+      # I just did it for the sake of the exercise.
+      - SECRET_KEY_BASE=77243c2243d7c71f25103c6225f89a9c33959a729e2402927c6264585c767e7a834563456345634563456345634563456345634563456345634563456345634
+
+  frontend:
+    build:
+      context: .
+      target: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - INTERNAL_API_URL=http://api:80
+    depends_on:
+      - api
+

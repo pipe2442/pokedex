@@ -1,0 +1,9 @@
+api/log
+api/tmp
+api/storage/*.sqlite3
+api/storage/*.sqlite3-journal
+frontend/node_modules
+frontend/.next
+.git
+.gitignore
+

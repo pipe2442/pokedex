@@ -2,12 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "raw.githubusercontent.com", // 👈 Cambia esto por el dominio de tus fotos
+        hostname: "raw.githubusercontent.com",
         port: "",
-        pathname: "/**", // Permite todos los paths bajo ese dominio
+        pathname: "/**",
       },
     ],
   },

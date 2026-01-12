@@ -28,8 +28,8 @@ class AuthController < ApplicationController
     cookies.encrypted[:jwt] = {
       value: token,
       httponly: true,
-      secure: Rails.env.production?,
-      same_site: (Rails.env.production? ? :none : :lax)
+      secure: false, # Deshabilitado para pruebas locales en Docker con HTTP
+      same_site: :lax
     }
 
     render json: { user: user }
