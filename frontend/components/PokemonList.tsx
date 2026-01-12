@@ -1,28 +1,25 @@
-// components/PokemonList.tsx
 "use client";
 
-import { useState } from "react"; // Necesitas el estado local para la página
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { usePokemonStore } from "@/store/usePokemonStore";
 import { getPokemons } from "@/lib/client/pokemons";
 import PokemonCard from "./PokemonCard";
 
 export default function PokemonList({ initialData }: any) {
-  const [page, setPage] = useState(1); // 1. Estado para la página actual
-
-  // 2. React Query: Incluimos [page] en la queryKey
+  const [page, setPage] = useState(1);
   const { data, isPlaceholderData } = useQuery({
-    queryKey: ["pokemons", page], // 👈 Esto es vital para que Next/Prev funcionen
+    queryKey: ["pokemons", page],
     queryFn: () => getPokemons(page),
     initialData: page === 1 ? initialData : undefined,
-    placeholderData: (prev) => prev, // Mantiene los datos viejos mientras carga los nuevos (UX pro)
+    placeholderData: (prev) => prev,
   });
 
   const { search, sort, getProcessedList } = usePokemonStore();
   const pokemons = getProcessedList(data?.results || []);
 
   return (
-    <main className="w-full bg-white rounded-t-3xl min-h-screen px-6 py-8">
+    <main className="w-full rounded-t-3xl min-h-screen px-6 py-8">
       {!search && (
         <div className="flex justify-center items-center gap-6 pb-10">
           <button
@@ -43,6 +40,7 @@ export default function PokemonList({ initialData }: any) {
           </button>
         </div>
       )}
+
       {/* Pokémon Grid */}
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
         <div className="flex flex-wrap gap-6 justify-center">

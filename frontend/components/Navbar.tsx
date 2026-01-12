@@ -24,7 +24,6 @@ export default function Navbar() {
         </div>
 
         <div>
-          {/* CONTENEDOR FLEX: Search y Filters en la misma línea */}
           <div className="flex items-center gap-3 w-full max-w-3xl">
             <div className="relative flex-1 group">
               <Search
@@ -38,7 +37,6 @@ export default function Navbar() {
               />
             </div>
 
-            {/* Aquí invocamos los filtros (el botón de Sort) */}
             <SearchFilters />
           </div>
         </div>

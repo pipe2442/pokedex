@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.variable}>
       <Providers>
-        <body className="font-sans bg-neutral-50">
+        <body className="font-sans">
           <Navbar />
           {children}
         </body>
