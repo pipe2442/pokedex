@@ -48,4 +48,20 @@ class PokeApi
   def self.sprite(id)
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/#{id}.png"
   end
+
+  def self.fetch(id)
+    res = get("#{BASE}/pokemon/#{id}")
+    body = res.parsed_response
+
+    raw_number =
+      if body.is_a?(Hash) && body["id"]
+        body["id"]
+      else
+        id
+      end
+
+    number = raw_number.to_i.to_s.rjust(3, "0") # "2" => "002"
+
+    body.merge("number" => number)
+  end
 end

@@ -4,6 +4,7 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { usePokemonStore } from "@/store/usePokemonStore";
 import SearchFilters from "./SearchFilters";
+import Link from "next/link";
 
 export default function Navbar() {
   const setSearch = usePokemonStore((s) => s.setSearch);
@@ -11,17 +12,22 @@ export default function Navbar() {
   return (
     <header className="bg-[#DC0A2D] pt-12 pb-6 px-6">
       <div className="max-w-7xl mx-auto flex flex-col gap-5">
-        <div className="flex items-center gap-3">
+        <Link href="/" className="group flex items-center gap-3">
           <Image
             src="/pokeball.svg.png"
             alt="Pokeball"
             width={32}
             height={32}
           />
-          <h1 className="text-white text-3xl font-bold tracking-tight">
+          <span
+            className="text-white/95 text-3xl font-bold tracking-tight
+               transition-all duration-200
+               group-hover:text-white
+               group-hover:drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]"
+          >
             Pokédex
-          </h1>
-        </div>
+          </span>
+        </Link>
 
         <div>
           <div className="flex items-center gap-3 w-full max-w-3xl">

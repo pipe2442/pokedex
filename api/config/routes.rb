@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index"
 
   get "/pokemons", to: "pokemons#index"
+  get "/pokemon/:id", to: "pokemons#show"
 end

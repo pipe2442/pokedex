@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 
 export default function PokemonCard({ pokemon }: any) {
   return (
-    <Link href={`/pokemons/${pokemon.id}`}>
+    <Link href={`/pokemon/${pokemon.id}`}>
       <Card className="w-60 h-60 overflow-hidden hover:scale-105 transition-all duration-300 border-none p-0 relative group shadow-[0_10px_40px_rgba(0,0,0,0.12)] rounded-2xl">
         <div className="absolute inset-0 flex flex-col">
           <div className="bg-white h-[65%]" />
