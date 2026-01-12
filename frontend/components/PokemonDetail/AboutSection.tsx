@@ -1,4 +1,3 @@
-// frontend/components/PokemonDetail/AboutSection.tsx
 import { Weight, Ruler } from "lucide-react";
 import { Pokemon } from "@/types/pokemon";
 

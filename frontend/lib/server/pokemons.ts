@@ -13,7 +13,7 @@ export async function getPokemons(page = 1) {
   });
 
   if (res.status === 401) {
-    return { pokemons: [], total_pages: 0 }; // Evita el crash si la sesión expiró
+    return { pokemons: [], total_pages: 0 };
   }
 
   if (!res.ok) throw new Error("Failed to fetch pokemons");

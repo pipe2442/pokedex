@@ -2,17 +2,17 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { usePokemonStore } from "@/store/usePokemonStore";
 import { getPokemons } from "@/lib/client/pokemons";
-import { Pokemon } from "@/types/pokemon";
+import { PokemonListResponse } from "@/types/pokemon";
 
 interface UsePokemonListProps {
-  initialData: { results: Pokemon[] };
+  initialData: PokemonListResponse;
 }
 
 export function usePokemonList({ initialData }: UsePokemonListProps) {
   const [page, setPage] = useState(1);
   const { search, getProcessedList } = usePokemonStore();
 
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["pokemons", page],
     queryFn: () => getPokemons(page),
     initialData: page === 1 ? initialData : undefined,
@@ -26,5 +26,6 @@ export function usePokemonList({ initialData }: UsePokemonListProps) {
     page,
     setPage,
     search,
+    isLoading: isFetching,
   };
 }

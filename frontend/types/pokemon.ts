@@ -47,6 +47,7 @@ export interface PokemonListResponse {
 export interface PokemonGridProps {
   pokemons: Pokemon[];
   search: string;
+  isLoading: boolean;
 }
 
 export interface PaginationProps {

@@ -11,7 +11,6 @@ interface PokemonCardProps {
 
 export default function PokemonCard({ pokemon }: PokemonCardProps) {
   const formattedNumber = `#${pokemon.number.toString().padStart(3, "0")}`;
-
   const imageUrl = pokemon.image || "/pokeball.svg.png";
 
   return (
