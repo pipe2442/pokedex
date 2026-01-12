@@ -1,72 +1,62 @@
-## 🚀 Running the project locally
+# Pokédex Challenge 🚀
 
-This repository contains two separate applications:
-
-- api → Rails backend  
-- frontend → Next.js frontend  
-
-Both must be running at the same time.
+This repository contains a full-stack Pokédex application with a Rails API and a Next.js frontend.
 
 ---
 
-## Requirements
+## 🐳 Running with Docker (Recommended)
 
-To run this project you will need:
+The easiest way to run the project is using Docker. This will build both the API and the Frontend and set up everything automatically.
 
+### Requirements
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
+
+### Instructions
+1. Open your terminal in the root directory of the project.
+2. Run the following command:
+   ```bash
+   docker-compose up --build
+   ```
+3. Once the containers are ready:
+   - **Frontend:** [http://localhost:3000](http://localhost:3000)
+   - **Backend API:** [http://localhost:8000](http://localhost:8000)
+
+---
+
+## 🛠️ Running Locally (Manual Setup)
+
+If you prefer to run the applications manually without Docker, follow these steps:
+
+### Requirements
 - Ruby **3.3+**
 - Rails **8+**
 - Node.js **20+**
-- npm
-- SQLite3 (used as the database)
+- SQLite3
 
-If you don’t have Ruby, Rails or Node installed yet, I love the official GoRails tutorials:
+### 1. Backend (Rails API)
+```bash
+cd api
+bundle install
+rails db:prepare
+rails s -p 8000
+```
+*The API will be available at [http://localhost:8000](http://localhost:8000)*
 
-https://gorails.com/setup/macos/26-tahoe  
-https://gorails.com/setup/ubuntu/22.04  
-https://gorails.com/setup/windows/11  
-
-These guides will walk you through installing Ruby, Rails, Node.js and SQLite in a clean and safe way.  
-You are free to use any other setup method if you prefer.
-
----
-
-## Backend (Rails API)
-
-cd api  
-bundle install  
-rails db:prepare  
-rails s
-
-Rails will be available at:
-http://localhost:8000
-
----
-
-## Demo user
-
-After seeding the database, the application provides a default user:
-
-Username: admin  
-Password: admin  
-
----
-
-## Frontend (Next.js)
-
+### 2. Frontend (Next.js)
 Open a new terminal and run:
-
-cd frontend  
-npm install  
-npm run dev  
-
-The frontend will be available at:
-http://localhost:3000
+```bash
+cd frontend
+npm install
+npm run dev
+```
+*The frontend will be available at [http://localhost:3000](http://localhost:3000)*
 
 ---
 
-## Open the app
+## 👤 Demo User
 
-Open your browser and go to:
-http://localhost:3000
+The application includes a default user for testing:
 
-Both servers must be running for the app to work properly.
+- **Username:** `admin`
+- **Password:** `admin`
+
