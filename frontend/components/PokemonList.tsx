@@ -43,7 +43,7 @@ export default function PokemonList({ initialData }: any) {
 
       {/* Pokémon Grid */}
       <div className="max-w-7xl mx-auto flex flex-col gap-10">
-        <div className="flex flex-wrap gap-6 justify-center">
+        <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
           {pokemons.length > 0 ? (
             pokemons.map((p: any) => <PokemonCard key={p.id} pokemon={p} />)
           ) : (
