@@ -1,7 +1,7 @@
 class PokeApi
   include HTTParty
   BASE = "https://pokeapi.co/api/v2"
-  PER_PAGE = 20
+  PER_PAGE = 151
 
   def self.list(page: 1)
     page = normalize_page(page)
