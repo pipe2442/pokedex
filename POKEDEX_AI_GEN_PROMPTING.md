@@ -69,8 +69,8 @@ Requirements
 
 Custom Hook
 
-frontend/hooks/usePokemonList.ts
-
+`frontend/hooks/usePokemonList.ts`
+```
 export function usePokemonList({ initialData }: UsePokemonListProps) {
   const [page, setPage] = useState(1)
   const { search, getProcessedList } = usePokemonStore()
@@ -87,11 +87,11 @@ export function usePokemonList({ initialData }: UsePokemonListProps) {
 
   return { pokemons, page, setPage, totalPages, search, isLoading: isFetching }
 }
-
+```
 ---
 
 Test (Vitest)
-
+```
 describe("usePokemonList", () => {
   it("calculates total pages and initializes data", () => {
     const mockData = { results: [{ name: "pikachu" }], total: 302 } as PokemonListResponse
@@ -105,7 +105,7 @@ describe("usePokemonList", () => {
     expect(result.current.pokemons[0].name).toBe("pikachu")
   })
 })
-
+```
 ---
 
 ## 4. Validation & Refinement Process
