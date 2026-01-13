@@ -71,3 +71,16 @@ The application includes a default user for testing:
 - **Username:** `admin`
 - **Password:** `admin`
 
+## 🛠️ Technologies Used
+
+### Backend
+- **Ruby on Rails 8** — API-only architecture
+- **SQLite** — Lightweight relational database
+- **RSpec** — Automated testing framework
+
+### Frontend
+- **Next.js (App Router)** — React-based framework
+- **Zustand** — Lightweight global state management
+- **TanStack Query** — Server-state caching and synchronization
+- **Shadcn UI** — Accessible and composable UI components
+- **Tailwind CSS v4** — Utility-first styling and animations
