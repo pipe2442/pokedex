@@ -1,5 +1,8 @@
 # Pokédex Challenge 🚀
 
+<img width="739" height="764" alt="pokedex" src="https://github.com/user-attachments/assets/e1097471-5a86-466a-befa-64eaab0d2801" />
+
+
 This repository contains a full-stack Pokédex application built with a **Rails 8 API backend** and a **Next.js frontend**, along with documentation that describes how Generative AI tools were intentionally used to design, refine, test, and productionize the project.
 
 Before running the application, you will find the following important resources in the root of this repository:
