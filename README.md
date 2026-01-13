@@ -1,8 +1,16 @@
 # Pokédex Challenge 🚀
 
-This repository contains a full-stack Pokédex application with a Rails API and a Next.js frontend.
+This repository contains a full-stack Pokédex application built with a **Rails 8 API backend** and a **Next.js frontend**, along with documentation that describes how Generative AI tools were intentionally used to design, refine, test, and productionize the project.
 
----
+Before running the application, you will find the following important resources in the root of this repository:
+
+- 📁 **`task_management_exercise/`**  
+  Contains the complete Task Management API exercise, including prompts, implementation, testing strategy, and final results.
+
+- 📄 **`POKEDEX_AI_GEN_PROMPTING.md`**  
+  Documents the full Generative AI prompting process used to build, refactor, and harden the Pokédex project (prompts, refinements, validations, and improvements).
+
+These documents are part of the technical evaluation and explain both the engineering decisions and the AI-assisted workflow used throughout this repository.
 
 ## 🐳 Running with Docker (Recommended)
 
