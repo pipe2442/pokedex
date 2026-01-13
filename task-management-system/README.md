@@ -52,6 +52,9 @@ Output:
 
 The result of this prompt was a fully functional first version of the backend with real request-level testing.
 
+<img width="1010" height="337" alt="Screenshot 2026-01-12 at 8 25 35 PM" src="https://github.com/user-attachments/assets/214224a4-e982-4516-819d-e30150612c41" />
+
+
 ---
 
 ### Strengthening the Test Suite
